@@ -1,5 +1,5 @@
-# Boris Yu
+# Shaders Class Fall 2015
 
-Shaders Class 2015
-
+Boris Yu
 Parsons School of Design
+borissyuu.com
