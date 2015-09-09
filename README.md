@@ -1,1 +1,3 @@
-# yub582_ss2015
+# Boris Yu
+# Shaders Class 2015
+# Parsons School of Design
