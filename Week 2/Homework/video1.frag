@@ -34,7 +34,7 @@ void main() {
 
     //raise x to power of 5 to make a curved line 
  	//bigger the number, darker the background, smaller the number, brigther the background
-    float y = expUp(st.x, 1., .06);
+    float y = expUp(sin(st.x * u_time, 1., .06);
 
     vec3 color = vec3(y);
 

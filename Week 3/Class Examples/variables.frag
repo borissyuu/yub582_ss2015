@@ -16,19 +16,27 @@ void main() {
 	//normalize gradient
 	vec2 st = gl_FragCoord.xy/u_resolution;
 
-    st *= 3.1415*2.;
-    st -= 3.1415;
+    vec4 color = vec(0.);
 
-    float y = st.x;
+    color.x += 0.;
+    color.y += 0.;
+    color.z += 0.;
+    color.w += 0.;
 
-    y = sin(y);
-    //understands to we want to assign the three color channels with the same value 
-    vec3 color = vec3(y);
+    color.r += -0.5;
+    color.g += 0.;
+    color.b += 0.;
+    color.a += 0.;
+
+    color.a += 0.;
+    color.t += 0.;
+    color.p += 0.;
+    color.q += 0.;
+
+    color.rg = vec2(1.);
+    color.rg = color.bg;
     
-    // Plot a line
-    float pct = plot(st,y*.5);
-    color = (1.0-pct)*color+pct*vec3(0.0,3.1415,0.0);
-    
-    //vec4 -->  construct a four dimensional vector with a three dimensional one plus a fourth value (opactiy)
-	gl_FragColor = vec4(color/(3.1415*2.),1.0);
+    gl_FragColor = color;
+    gl_FragColor.a = 1.0;
+
 }

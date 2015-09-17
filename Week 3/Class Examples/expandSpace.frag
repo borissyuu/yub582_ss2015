@@ -18,6 +18,7 @@ void main() {
 
     st *= 3.1415*2.;
     st -= 3.1415;
+    st.x -= u_time;
 
     float y = st.x;
 
