@@ -35,6 +35,7 @@ void main(){
     // Use polar coordinates instead of cartesian, need to obtain angle and distance from center 
     vec2 toCenter = vec2(0.5)-st;
     float angle = atan(toCenter.y,toCenter.x); //returns angle value between -PI & PI
+    float normAngle = (angle/TWO_PI)+.5;
     
     float radius = length(toCenter)*2.0;
 
@@ -43,7 +44,7 @@ void main(){
   
     // Map the angle (-PI to PI) to the Hue (from 0 to 1)
     // and the Saturation to the radius
-    color = hsb2rgb(vec3((angle/TWO_PI)+y,radius,1.0)); //divide by TWO_PI to get -0.5 to 0.5
+    color = hsb2rgb(vec3((normAngle/TWO_PI)+y,radius,1.0)); //divide by TWO_PI to get -0.5 to 0.5
 
     gl_FragColor = vec4(color,1.0);
 }

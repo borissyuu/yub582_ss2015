@@ -25,7 +25,8 @@ void main(){
 
     // Use polar coordinates instead of cartesian, need to obtain angle and distance from center 
     vec2 toCenter = vec2(0.5)-st;
-    float angle = atan(toCenter.y,toCenter.x)*movement; //returns angle value between -PI & PI
+    float angle = atan(toCenter.y,toCenter.x); //returns angle value between -PI & PI
+    angle += (u_time);
     
     float radius = length(toCenter)*2.0;
   
