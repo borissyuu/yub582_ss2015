@@ -15,7 +15,7 @@ void main(){
 
 
     // a. The DISTANCE from the pixel to the center
-    pct = distance(st,vec2(0.5));
+    pct = 10.*distance(st,vec2(0.5));
     //pct = fract(pct*1.5);
     // pct = step(.4, pct);
 
