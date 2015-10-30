@@ -16,24 +16,19 @@ uniform float u_time;
 
 
 float triangles (vec2 st) {
-    return step(st.y, st.x) - step(st.x, st.y);
+    return step(st.y, st.x) * step(st.x, st.y);
 }
 
 float F( float n, float k ){
     return 1.0 - pow(abs(sin(PI * u_time * n)), k);
 }
 
-mat2 rotationMatrix(float a) {
-    return mat2(vec2(cos(a),-sin(a)),
-               	vec2(sin(a),cos(a)));
-}
-
 void main() {
 
 	//float fade_out = 1.-abs(sin(u_time)-cos(u_time));
-	float fade_out = 1.-mod(u_time/3., 5.);
+	float fade_out = 1.-mod(u_time/2., 2.);
 
-	float border = abs(sin(fade_out/1.)); // 0.01
+	float border = abs(sin(fade_out/10.)); // 0.01
 	float pent_radius= 1.-(fade_out); // 0.5
 	
 	vec4 pent_color= vec4(1.0, 1.0, 1.0, fade_out);
@@ -45,44 +40,25 @@ void main() {
 	// st.x *= u_resolution.x/u_resolution.y;
 	vec3 color = vec3(0.0);
 	float d = 0.0; 
-	float e = 0.0;
 
 	//st = st - circle_centre;
-	st = st * 10. - 4.4; //remap the space from -1. to 1.
-
-	vec2 st_i = floor(st);
-
-    if (mod(st_i.y, 2.) == 1.) {
-        st.x = 1.-st.x;
-    }
-
-    if (mod(st_i.x, 2.) == 1.) {
-        st.y = 1.-st.y;
-    }
-
-    if (st_i.y == 1.) {
-        st.x -= .5;
-    }
-
+	st = st * 10. - 5.; //remap the space from -1. to 1.
 	//st *= 10.;
 	vec2 st_f = fract(st);
 	int N = 5; //number of sides
-
 
 	//angle and radius from current pixel
 	float a = atan(st_f.x, st_f.y)+PI;
 	float r = TWO_PI/float(N);
 
 	// Shaping function that modulate the distance
-  	d = cos(floor(.9+a/r)*r-a)*length(st.xy) - abs(sin(+ u_time * r-a));
-  	e = sin(e*3.14*5.-u_time*3.);
-  	st_f = rotationMatrix(e*PI)*st_f;
+  	d = cos(floor(.9+a/r)*r-a)*length(st.xy);
 
   	//original code 
   	//float t = smoothstep(.4,.41,d) - smoothstep(.41, .4, d);
-  	color += vec3(smoothstep(d, pent_radius+border, pent_radius) - smoothstep(d, pent_radius, pent_radius-border));
-  	color += vec3(smoothstep(d, pent_radius+border, pent_radius) - smoothstep(d, pent_radius, pent_radius-border));
-  	//color += triangles(st_f);
+  	color += vec3(1.0 + smoothstep(d, pent_radius+border, pent_radius) - smoothstep(d, pent_radius, pent_radius-border));
+  	color += vec3(1.0 + smoothstep(d, pent_radius+border, pent_radius) - smoothstep(d, pent_radius, pent_radius-border));
+  	//color += 1.0 - triangles(st_f);
 
   	// float y = pent(d, circle_radius, border);
   	// vec3 color = vec3(y);
