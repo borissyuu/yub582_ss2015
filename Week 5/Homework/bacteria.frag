@@ -55,7 +55,7 @@ void main() {
 
     //d = length(abs(st)-.1);
 
-    translate(vec2(-.5));
+    //translate(vec2(-.5));
     rotate(u_time);
     pos = matrix * pos;
 

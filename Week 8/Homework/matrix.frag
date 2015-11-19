@@ -35,7 +35,7 @@ void main() {
 	time *= vec2(1.0, 0.0) *random(i_st.x);
 
 	//grid
-	float totalCells = grid.x*grid.y;
+	float totalCells = grid.x*grid.y ;
 	float t = mod(u_time*max(grid.x,grid.y)+floor(1.0+u_time),totalCells);
     vec2 head = vec2(mod(t,grid.x), floor(t/grid.y));
 
